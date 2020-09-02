@@ -1,0 +1,13 @@
+apply plugin: 'java'
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    implementation 'org.jsoup:jsoup:1.13.1'
+	implementation 'org.immutables:gson:2.8.8'
+
+}
