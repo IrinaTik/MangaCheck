@@ -7,12 +7,7 @@ public class MangaEntry {
     private String title;
     private int chapterCount;
     private int lastChapter;
-
-    public enum mangaStatus {
-        COMPLETE, ONGOING, FROZEN, DROPPED, DELETED
-    }
-
-    private mangaStatus status;
+    private MangaStatus status;
 
     public String getTitle() {
         return title;
@@ -41,11 +36,11 @@ public class MangaEntry {
         return this;
     }
 
-    public mangaStatus getStatus() {
+    public MangaStatus getStatus() {
         return status;
     }
 
-    public MangaEntry withStatus(mangaStatus status) {
+    public MangaEntry withStatus(MangaStatus status) {
         this.status = status;
         return this;
     }
