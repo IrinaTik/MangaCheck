@@ -1,5 +1,7 @@
 apply plugin: 'java'
 
+compileJava.options.encoding = "UTF-8"
+compileTestJava.options.encoding = "UTF-8"
 
 repositories {
     mavenCentral()
@@ -8,7 +10,7 @@ repositories {
 dependencies {
 
     implementation 'org.jsoup:jsoup:1.13.1'
-	implementation 'org.immutables:gson:2.8.8'
+    implementation 'com.googlecode.json-simple:json-simple:1.1.1'
     implementation 'org.jetbrains:annotations:19.0.0'
 
 }
