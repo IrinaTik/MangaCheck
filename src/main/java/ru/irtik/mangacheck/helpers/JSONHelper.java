@@ -1,4 +1,4 @@
-package ru.irtik.mangacheck.events;
+package ru.irtik.mangacheck.helpers;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
