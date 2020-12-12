@@ -1,14 +1,9 @@
-[
-  {
-    "title": "akatsuki no yona"
-  },
-  {
-    "title": "one piece"
-  },
-  {
-    "title": "Поднятие уровня в одиночку"
-  },
-  {
-    "title": "Блич"
-  }
-]
+{
+  "titles":
+          [
+            "akatsuki no yona",
+            "one piece",
+            "Поднятие уровня в одиночку",
+            "bleach"
+          ]
+}

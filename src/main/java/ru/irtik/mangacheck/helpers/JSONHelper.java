@@ -1,58 +1,35 @@
 package ru.irtik.mangacheck.helpers;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
 import ru.irtik.mangacheck.datamodel.MangaEntry;
 
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.*;
 
 public class JSONHelper {
 
     private String filePath;
+    private Gson gson;
 
     public JSONHelper(String filePath) {
         this.filePath = filePath;
+        this.gson = new Gson();
     }
 
-    public List<MangaEntry> readJSONFile() {
+    public Set<MangaEntry> readJSONFile() {
         try {
-            JSONParser parser = new JSONParser();
-            JSONArray jData = (JSONArray) parser.parse(getJsonData());
-            return parseMangaEntries(jData);
-        } catch (Exception ex) {
-            ex.printStackTrace();
+            JsonReader reader = new JsonReader(new FileReader(filePath));
+            Map<String, List<String>> mangaInfo = gson.fromJson(reader, new TypeToken<Map<String, List<String>>>(){}.getType());
+            Set<MangaEntry> entries = new TreeSet<>(Comparator.comparing(MangaEntry::getTitle));
+            mangaInfo.get("titles").forEach(title -> entries.add(new MangaEntry().withTitle(title)));
+            System.out.println("over");
+            return entries;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return null;
         }
-        return null;
-    }
-
-    private String getJsonData() {
-        StringBuilder builder = new StringBuilder();
-        try {
-            List<String> lines = Files.readAllLines(Paths.get(filePath), Charset.availableCharsets().get("UTF-8"));
-            lines.forEach(builder::append);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        return builder.toString();
-    }
-
-    private List<MangaEntry> parseMangaEntries(JSONArray jData) {
-        List<MangaEntry> mangaEntries = new ArrayList<>();
-        for (Object jItem : jData) {
-            MangaEntry mangaEntry = changeToMangaEntry(jItem);
-            mangaEntries.add(mangaEntry);
-        }
-        return mangaEntries;
-    }
-
-    private MangaEntry changeToMangaEntry(Object jItem) {
-        JSONObject jMangaEntry = (JSONObject) jItem;
-        String title = (String) jMangaEntry.get("title");
-        return new MangaEntry().withTitle(title);
     }
 }

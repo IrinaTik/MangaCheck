@@ -6,8 +6,8 @@ import ru.irtik.mangacheck.helpers.JSONHelper;
 
 import java.io.File;
 import java.io.FileReader;
-import java.util.List;
 import java.util.Properties;
+import java.util.Set;
 
 public class Prepare {
 
@@ -33,7 +33,7 @@ public class Prepare {
         }
     }
 
-    public static List<MangaEntry> readMangaList(String fileName) {
+    public static Set<MangaEntry> readMangaList(String fileName) {
         JSONHelper jsonHelper = new JSONHelper(fileName);
         return jsonHelper.readJSONFile();
     }

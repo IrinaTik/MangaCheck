@@ -3,7 +3,7 @@ package ru.irtik.mangacheck.events;
 import ru.irtik.mangacheck.datamodel.MangaEntry;
 import ru.irtik.mangacheck.datamodel.MangaReaderSite;
 
-import java.util.List;
+import java.util.Set;
 
 public class Runner {
 
@@ -17,7 +17,7 @@ public class Runner {
             System.out.println("MangaReaderSite definition gone wrong - URL not identified!");
         }
 
-        List<MangaEntry> mangaList = Prepare.readMangaList(JSONFILE_PATH);
+        Set<MangaEntry> mangaList = Prepare.readMangaList(JSONFILE_PATH);
         for (MangaEntry entry : mangaList) {
             System.out.println(entry.getTitle());
         }
