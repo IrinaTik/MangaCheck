@@ -2,6 +2,7 @@ package ru.irtik.mangacheck.events;
 
 import ru.irtik.mangacheck.datamodel.MangaEntry;
 import ru.irtik.mangacheck.datamodel.MangaReaderSite;
+import ru.irtik.mangacheck.helpers.MainGUIForm;
 
 import java.util.Set;
 
@@ -21,6 +22,8 @@ public class Runner {
         for (MangaEntry entry : mangaList) {
             System.out.println(entry.getTitle());
         }
+
+        MainGUIForm form = new MainGUIForm(mangaList);
 
 //        SiteCheck.checkNewStuff(readmanga, mangaList);
     }
